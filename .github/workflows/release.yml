@@ -2,8 +2,9 @@ name: Release VSCode Extension
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
+  workflow_dispatch: # 这允许你手动触发工作流
 
 jobs:
   build:
