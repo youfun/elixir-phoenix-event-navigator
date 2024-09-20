@@ -1,71 +1,53 @@
-# elixir-event-navigator- README
+# Elixir Event Navigator
 
-This is the README for your extension "elixir-event-navigator-". After writing up a brief description, we recommend including the following sections.
+Elixir Event Navigator is a Visual Studio Code extension designed for developers working with the LiveViewNative library in Phoenix projects. It facilitates easy navigation between Elixir event definitions and handlers, particularly useful for building native iOS apps with SwiftUI using Phoenix LiveView.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Quick navigation between Elixir event definitions and their corresponding handlers
+- Support for Phoenix LiveView and LiveViewNative projects
+- Enhanced navigation experience in `.ex`, `.exs`, and `.swiftui.ex` files
+- Bridges the gap where VS Code's official definition jump functionality falls short for specific languages and libraries
 
-For example if there is an image subfolder under your extension project workspace:
+## Usage
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+1. Place your cursor on an event definition or handler in an Elixir file
+2. Use the shortcut `[your_shortcut_here]` or the "Navigate to Event/Handler" command from the command palette
+3. The extension will automatically jump to the related event definition or handler
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- Visual Studio Code 1.60.0 or higher
+- Phoenix project open in the workspace
+- LiveViewNative Swift package installed
 
-## Extension Settings
+## Installation
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+1. Open VS Code
+2. Go to the Extensions view (Ctrl+Shift+X)
+3. Search for "Elixir Event Navigator"
+4. Click Install
 
-For example:
+## Configuration
 
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+[List any configuration options here]
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+[List any known issues or limitations]
 
-## Release Notes
 
-Users appreciate release notes as you update your extension.
+## License
 
-### 1.0.0
+[Specify your license, e.g., MIT, Apache 2.0, etc.]
 
-Initial release of ...
+## More Information
 
-### 1.0.1
+- [LiveViewNative Swift package](https://github.com/liveview-native/liveview-native-swift)
+- [Phoenix LiveView documentation](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html)
 
-Fixed issue #.
+The LiveViewNative Swift package allows you to use Phoenix LiveView to build native iOS apps with SwiftUI. This extension aims to enhance the development experience by providing easy navigation between related Elixir code elements.
 
-### 1.1.0
+If you encounter any issues or have suggestions for improvements while using this extension, please raise an issue on our [GitHub repository](your_repository_link_here).
 
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Thank you for using Elixir Event Navigator!

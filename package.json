@@ -1,7 +1,7 @@
 {
-  "name": "elixir-event-navigator",
-  "displayName": "Elixir Event Navigator",
-  "description": "Navigate between Elixir event definitions and their handlers with ease.",
+  "name": "elixir-phoenix-event-navigator",
+  "displayName": "Elixir Phoenix LiveView Event Navigator",
+  "description": "Navigate between Elixir phoenix livenative SwiftUI event definitions and their handlers with ease.Elixir phoenix livenative SwiftUI  https://github.com/liveview-native/liveview-client-swiftui ",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.60.0"
@@ -17,15 +17,21 @@
     "languages": [
       {
         "id": "elixir",
-        "aliases": ["Elixir", "elixir"],
-        "extensions": [".ex", ".exs", ".swiftui.ex"]
+        "extensions": [".ex", ".exs", ".swiftui.ex"],
+        "aliases": ["Elixir", "elixir"]
+      } 
+    ],
+    "commands": [
+      {
+        "command": "elixir-event-navigator.testProvider",
+        "title": "Test Elixir Event Navigator"
       }
     ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "compile": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+    "watch": "npm run compile -- --watch",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js"
@@ -41,6 +47,11 @@
     "glob": "^7.1.7",
     "mocha": "^8.4.0",
     "typescript": "^4.3.2",
-    "vscode-test": "^1.5.2"
+    "vscode-test": "^1.5.2",
+    "esbuild": "^0.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/youfun/elixir-event-navigator"
   }
 }

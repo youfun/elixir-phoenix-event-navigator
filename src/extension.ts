@@ -2,16 +2,27 @@ import * as vscode from 'vscode';
 import { ElixirEventDefinitionProvider } from './definitionProvider';
 
 export function activate(context: vscode.ExtensionContext) {
-    const provider = new ElixirEventDefinitionProvider();
+    console.log('Activating Elixir Event Definition Provider');
 
-    context.subscriptions.push(
-        vscode.languages.registerDefinitionProvider(
-            { scheme: 'file', pattern: '**/*.swiftui.ex' },
-            provider
-        )
+    const provider = new ElixirEventDefinitionProvider();
+    const disposable = vscode.languages.registerDefinitionProvider(
+        { scheme: 'file', language: 'elixir' },
+        provider
     );
 
-    console.log('Elixir Event Navigator is now active!');
+    context.subscriptions.push(disposable);
+
+    console.log('Elixir Event Definition Provider activated');
+
+    // 添加一个命令来测试提供器
+    let testCommand = vscode.commands.registerCommand('elixir-event-navigator.testProvider', () => {
+        console.log('Test command executed');
+        vscode.window.showInformationMessage('Elixir Event Navigator is active!');
+    });
+
+    context.subscriptions.push(testCommand);
 }
 
-export function deactivate() {}
+export function deactivate() {
+    console.log('Deactivating Elixir Event Definition Provider');
+}

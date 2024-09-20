@@ -8,29 +8,32 @@ export class ElixirEventDefinitionProvider implements vscode.DefinitionProvider 
         position: vscode.Position,
         token: vscode.CancellationToken
     ): vscode.ProviderResult<vscode.Definition | vscode.LocationLink[]> {
-        const line = document.lineAt(position.line).text;
-        const regex = /phx-\w+="(\w+)"/g;
-        let match;
-        let eventName = null;
-
-        while ((match = regex.exec(line)) !== null) {
-            const start = match.index;
-            const end = start + match[0].length;
-            if (position.character >= start && position.character <= end) {
-                eventName = match[1];
-                break;
-            }
-        }
-
-        if (!eventName) {
+        console.log('ElixirEventDefinitionProvider: provideDefinition called');
+        
+        const wordRange = document.getWordRangeAtPosition(position, /phx-\w+="(\w+)"/);
+        if (!wordRange) {
+            console.log('ElixirEventDefinitionProvider: No word range found');
             return null;
         }
+
+        const line = document.lineAt(position.line).text;
+        const match = /phx-\w+="(\w+)"/.exec(line.substring(wordRange.start.character));
+        if (!match) {
+            console.log('ElixirEventDefinitionProvider: No match found');
+            return null;
+        }
+
+        const eventName = match[1];
+        console.log('ElixirEventDefinitionProvider: Event name found:', eventName);
 
         const currentFilePath = document.uri.fsPath;
         const baseFileName = path.basename(currentFilePath, '.swiftui.ex');
         const exFilePath = path.join(path.dirname(currentFilePath), `${baseFileName}.ex`);
 
+        console.log('ElixirEventDefinitionProvider: Searching in file:', exFilePath);
+
         if (!fs.existsSync(exFilePath)) {
+            console.log('ElixirEventDefinitionProvider: File not found');
             return null;
         }
 
@@ -39,6 +42,7 @@ export class ElixirEventDefinitionProvider implements vscode.DefinitionProvider 
 
         for (let i = 0; i < lines.length; i++) {
             if (lines[i].includes(`def handle_event("${eventName}"`)) {
+                console.log('ElixirEventDefinitionProvider: Event handler found at line', i);
                 return new vscode.Location(
                     vscode.Uri.file(exFilePath),
                     new vscode.Position(i, 0)
@@ -46,6 +50,7 @@ export class ElixirEventDefinitionProvider implements vscode.DefinitionProvider 
             }
         }
 
+        console.log('ElixirEventDefinitionProvider: Event handler not found');
         return null;
     }
 }
