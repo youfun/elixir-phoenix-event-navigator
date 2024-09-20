@@ -46,11 +46,17 @@ jobs:
         name: elixir-phoenix-event-navigator-${{ steps.version_date.outputs.VERSION }}-${{ steps.version_date.outputs.DATE }}
         path: "*.vsix"
 
-    - name: Release
+    - name: Create Release
+      id: create_release
       uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       with:
         files: "*.vsix"
+        tag_name: v${{ steps.version_date.outputs.VERSION }}-${{ steps.version_date.outputs.DATE }}
         name: Release ${{ steps.version_date.outputs.VERSION }} (${{ steps.version_date.outputs.DATE }})
+        body: |
+          Automated release for version ${{ steps.version_date.outputs.VERSION }} built on ${{ steps.version_date.outputs.DATE }}
+        draft: false
+        prerelease: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
