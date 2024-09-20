@@ -12,7 +12,7 @@ Elixir Event Navigator is a Visual Studio Code extension designed for developers
 ## Usage
 
 1. Place your cursor on an event definition or handler in an Elixir file
-2. Use the shortcut `[your_shortcut_here]` or the "Navigate to Event/Handler" command from the command palette
+2. Use the shortcut `command+chick` or the "Navigate to Event/Handler" command from the command palette
 3. The extension will automatically jump to the related event definition or handler
 
 ## Requirements
@@ -37,9 +37,6 @@ Elixir Event Navigator is a Visual Studio Code extension designed for developers
 [List any known issues or limitations]
 
 
-## License
-
-[Specify your license, e.g., MIT, Apache 2.0, etc.]
 
 ## More Information
 
